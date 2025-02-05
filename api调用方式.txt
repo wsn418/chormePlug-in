@@ -1,0 +1,45 @@
+// 请求示例
+const options = {
+  method: 'POST',
+  headers: {Authorization: 'Bearer <token>', 'Content-Type': 'application/json'},
+  body: '{"model":"deepseek-ai/DeepSeek-V3","messages":[{"role":"user","content":"中国大模型行业2025年将会迎来哪些机遇和挑战？"}],"stream":false,"max_tokens":512,"stop":["null"],"temperature":0.7,"top_p":0.7,"top_k":50,"frequency_penalty":0.5,"n":1,"response_format":{"type":"text"},"tools":[{"type":"function","function":{"description":"<string>","name":"<string>","parameters":{},"strict":false}}]}'
+};
+
+fetch('https://api.siliconflow.cn/v1/chat/completions', options)
+  .then(response => response.json())
+  .then(response => console.log(response))
+  .catch(err => console.error(err));
+
+
+// 返回结构
+{
+  "id": "<string>",
+  "choices": [
+    {
+      "message": {
+        "role": "assistant",
+        "content": "<string>",
+        "reasoning_content": "<string>"
+      },
+      "finish_reason": "stop"
+    }
+  ],
+  "tool_calls": [
+    {
+      "id": "<string>",
+      "type": "function",
+      "function": {
+        "name": "<string>",
+        "arguments": "<string>"
+      }
+    }
+  ],
+  "usage": {
+    "prompt_tokens": 123,
+    "completion_tokens": 123,
+    "total_tokens": 123
+  },
+  "created": 123,
+  "model": "<string>",
+  "object": "chat.completion"
+}
